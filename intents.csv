@@ -1,0 +1,34 @@
+intent,text
+greet,hi
+greet,hello
+greet,hey there
+greet,good morning
+greet,good evening
+stress,I am feeling anxious
+stress,I am stressed
+stress,too much tension at work
+stress,panic attack
+stress,I can't relax
+exercise,I want to workout
+exercise,let's exercise
+exercise,any gym tips?
+exercise,how to stay fit?
+exercise,yoga routine
+sleep,I can't sleep
+sleep,trouble sleeping
+sleep,insomnia
+sleep,how to sleep early?
+sleep,sleep cycle is broken
+nutrition,I want a diet plan
+nutrition,what to eat?
+nutrition,healthy food suggestions
+nutrition,tell me about balanced diet
+nutrition,what should I eat for dinner?
+goodbye,bye
+goodbye,goodbye
+goodbye,see you later
+goodbye,take care
+goodbye,catch you later
+unknown,what is the weather?
+unknown,tell me a joke
+unknown,what time is it?
