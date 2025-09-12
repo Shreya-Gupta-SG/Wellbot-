@@ -1,22 +1,64 @@
-🚀 This repository contains the development of a Chatbot Application.
-I have completed Milestone 1, which focuses on setting up the user authentication system and profile management with database integration.
+🌍 WellBot – A Wellness Chatbot
 
-📌 Milestone 1 – Completed Features
+WellBot is an AI-powered Wellness Chatbot built as part of the Infosys Springboard Virtual Internship.
+It evolves across two milestones:
 
-🔑 User Authentication
+Milestone 1: Authentication + Profile Management
 
-Register a new account
+Milestone 2: Conversational AI Core (Intent Recognition, Dialogue Management, Knowledge Base, Chat History)
 
-Secure login functionality
+🚀 Milestone 1 – User Authentication & Profile Management
+📌 Features
 
-🏠 Dashboard
+✅ User Registration & Login using FastAPI backend
 
-Displays user information after login
+✅ Password Encryption with bcrypt
 
-👤 Profile Page
+✅ Profile Management (Name, Age Group, Language) stored in SQLite
 
-View and update user details
+✅ Streamlit Frontend for easy interaction
 
-💾 Database Integration
+✅ Feedback messages for user actions (success/error)
 
-Stores user credentials and profile data
+🛠️ Tech Stack
+
+Frontend: Streamlit
+
+Backend: FastAPI
+
+Database: SQLite
+
+Security: bcrypt for password hashing
+
+📂 Files
+
+app.py → Streamlit frontend (Home, Login, Register)
+
+backend.py → FastAPI backend (Register, Login, Profile management)
+
+users.db → SQLite database
+
+🤖 Milestone 2 – Conversational AI Core
+📌 Features
+
+✅ Intent Recognition → Detects user queries (greetings, stress, diet, exercise, meditation, etc.)
+
+✅ Dialogue Management → Maintains context and generates appropriate responses
+
+✅ Knowledge Base Integration → Provides global wellness information
+
+✅ Chat History Storage → Saves conversations (username, query, response, timestamp) in SQLite
+
+✅ Personalized Guidance based on past conversations
+
+🛠️ Tech Stack
+
+Frontend: Streamlit
+
+Backend: FastAPI
+
+Database: SQLite (extended with chat_history table)
+
+AI/NLP: Simple intent classification (keyword/rule-based or ML model)
+
+Knowledge Source: JSON/Dictionary wellness dataset
