@@ -1,32 +1,42 @@
+import os
+import sys
+import json
+import sqlite3
+import bcrypt
+import traceback
+from datetime import datetime
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import sqlite3
-import bcrypt
-import os
-import json
-import torch
-from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
-# --- Import Dialogue Manager ---
-from chatbot.src.dialogue_manager import get_bot_reply, detect_rule_based_intent  
+# --- Path setup ---
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SRC_PATH = os.path.join(BASE_DIR, "chatbot", "src")
+if SRC_PATH not in sys.path:
+    sys.path.append(SRC_PATH)
 
-# --- Initialize FastAPI ---
+# --- Import dialogue manager ---
+try:
+    from chatbot.src.dialogue_manager import get_bot_reply
+except ImportError:
+    raise ImportError("❌ Could not import dialogue_manager.py. Ensure it's in chatbot/src.")
+
+# --- FastAPI app ---
 app = FastAPI(title="WellBot Backend")
-
-# --- Enable CORS (for frontend communication) ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all for dev (change to specific domain in production)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# --- Database Setup ---
-conn = sqlite3.connect("users.db", check_same_thread=False)
+# --- Database setup ---
+DB_PATH = os.path.join(BASE_DIR, "users.db")
+conn = sqlite3.connect(DB_PATH, check_same_thread=False)
 cursor = conn.cursor()
 
+# --- Tables ---
 cursor.execute("""CREATE TABLE IF NOT EXISTS users(
     username TEXT UNIQUE,
     password BLOB
@@ -36,8 +46,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS profiles(
     username TEXT,
     name TEXT,
     age_group TEXT,
-    language TEXT,
-    FOREIGN KEY(username) REFERENCES users(username)
+    language TEXT
 )""")
 
 cursor.execute("""CREATE TABLE IF NOT EXISTS chat_history(
@@ -48,6 +57,21 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS chat_history(
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
 )""")
 
+cursor.execute("""CREATE TABLE IF NOT EXISTS feedback(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT,
+    question TEXT,
+    answer TEXT,
+    rating INTEGER,
+    comment TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+)""")
+
+cursor.execute("""CREATE TABLE IF NOT EXISTS kb(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question TEXT,
+    answer TEXT
+)""")
 conn.commit()
 
 # --- Pydantic Models ---
@@ -65,40 +89,11 @@ class ChatMessage(BaseModel):
     user_id: str
     message: str
 
-# --- Load Trained Intent Model ---
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "chatbot", "models", "intent_model")
-
-if not os.path.exists(MODEL_PATH):
-    raise RuntimeError(f"❌ Trained intent model not found at {MODEL_PATH}")
-
-tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_PATH)
-model = DistilBertForSequenceClassification.from_pretrained(MODEL_PATH)
-
-with open(os.path.join(MODEL_PATH, "label_map.json")) as f:
-    label2id = json.load(f)
-id2label = {v: k for k, v in label2id.items()}
-
-# --- Intent Mapping (Model → Dialogue Manager) ---
-intent_mapping = {
-    "greeting": "greet",
-    "mood_check": "mood_check",
-    "ask_symptom": "ask_symptom",
-    "feeling_bad": "negative_mood",
-    "stress_issue": "stress",
-    "sleep_issue": "sleep",
-    "exercise_query": "exercise",
-    "chitchat": "chitchat",
-    "goodbye": "goodbye",
-    "thanks": "thanks",
-    "give_tip": "give_tip"
-}
-
-# --- Auth Routes ---
+# --- Auth routes ---
 @app.post("/register")
 def register(user: User):
-    hashed_pw = bcrypt.hashpw(user.password.encode("utf-8"), bcrypt.gensalt())
     try:
+        hashed_pw = bcrypt.hashpw(user.password.encode("utf-8"), bcrypt.gensalt())
         cursor.execute("INSERT INTO users(username, password) VALUES (?, ?)", (user.username, hashed_pw))
         conn.commit()
         return {"message": "User registered successfully!"}
@@ -115,10 +110,6 @@ def login(user: User):
 
 @app.post("/profile")
 def save_profile(profile: Profile):
-    cursor.execute("SELECT 1 FROM users WHERE username=?", (profile.username,))
-    if not cursor.fetchone():
-        raise HTTPException(status_code=404, detail="User not found")
-
     cursor.execute("DELETE FROM profiles WHERE username=?", (profile.username,))
     cursor.execute(
         "INSERT INTO profiles(username, name, age_group, language) VALUES (?, ?, ?, ?)",
@@ -135,42 +126,109 @@ def get_profile(username: str):
         return {"name": row[0], "age_group": row[1], "language": row[2]}
     raise HTTPException(status_code=404, detail="Profile not found")
 
-# --- Chat Endpoint ---
+# --- Chat Route ---
 @app.post("/chat")
 def chat(msg: ChatMessage):
     user_msg = msg.message.strip()
     if not user_msg:
         raise HTTPException(status_code=400, detail="Message cannot be empty")
 
-    # --- Intent Detection ---
-    rule_intent = detect_rule_based_intent(user_msg)
+    try:
+        bot_reply = get_bot_reply(user_id=msg.user_id, user_message=user_msg)
+    except Exception:
+        traceback.print_exc()
+        bot_reply = "⚠️ Sorry, there was an error processing your request."
 
-    if rule_intent:
-        mapped_intent = rule_intent
-    else:
-        inputs = tokenizer(user_msg, return_tensors="pt", padding=True, truncation=True, max_length=64)
-        with torch.no_grad():
-            outputs = model(**inputs)
-            predicted_class_id = outputs.logits.argmax(dim=-1).item()
-
-        predicted_intent = id2label[predicted_class_id]
-        mapped_intent = intent_mapping.get(predicted_intent, predicted_intent)
-
-    # --- Get reply from dialogue manager ---
-    bot_reply = get_bot_reply(user_id=msg.user_id, user_message=user_msg, intent=mapped_intent)
-
-    # --- Store chat in DB ---
     cursor.execute(
-        "INSERT INTO chat_history (user_id, question, answer) VALUES (?, ?, ?)",
-        (msg.user_id, user_msg, bot_reply)
+        "INSERT INTO chat_history(user_id, question, answer) VALUES (?, ?, ?)",
+        (msg.user_id, user_msg, bot_reply),
     )
     conn.commit()
 
-    return {"user": user_msg, "intent": mapped_intent, "bot": bot_reply}
+    return {"user": user_msg, "bot": bot_reply}
 
-# --- Chat History Route (Optional for Debugging/UI) ---
 @app.get("/chat/history/{user_id}")
 def get_chat_history(user_id: str):
     cursor.execute("SELECT question, answer, timestamp FROM chat_history WHERE user_id=?", (user_id,))
     rows = cursor.fetchall()
     return [{"question": q, "answer": a, "timestamp": t} for q, a, t in rows]
+
+# --- Feedback ---
+@app.post("/feedback")
+def save_feedback(data: dict):
+    cursor.execute(
+        "INSERT INTO feedback(user_id, question, answer, rating, comment) VALUES (?,?,?,?,?)",
+        (data["user_id"], data["question"], data["answer"], data.get("rating", None), data.get("comment", "")),
+    )
+    conn.commit()
+    return {"message": "Feedback saved!"}
+
+@app.get("/feedback/{user_id}")
+def get_feedback(user_id: str):
+    cursor.execute("SELECT question, answer, rating, comment, timestamp FROM feedback WHERE user_id=?", (user_id,))
+    rows = cursor.fetchall()
+    return [{"question": q, "answer": a, "rating": r, "comment": c, "timestamp": t} for q, a, r, c, t in rows]
+
+# --- Analytics ---
+@app.get("/analytics")
+def get_analytics():
+    # Total queries
+    cursor.execute("SELECT COUNT(*) FROM chat_history")
+    total_queries = cursor.fetchone()[0]
+
+    # Failed queries (bot replies with ⚠️)
+    cursor.execute("SELECT COUNT(*) FROM chat_history WHERE answer LIKE '⚠️%'")
+    failed_queries = cursor.fetchone()[0]
+
+    # Daily queries
+    cursor.execute("SELECT DATE(timestamp), COUNT(*) FROM chat_history GROUP BY DATE(timestamp)")
+    daily_queries = {row[0]: row[1] for row in cursor.fetchall()}
+
+    # Feedback
+    cursor.execute("SELECT COUNT(*) FROM feedback WHERE rating=1")
+    thumbs_up = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM feedback WHERE rating=0")
+    thumbs_down = cursor.fetchone()[0]
+    total_feedback = thumbs_up + thumbs_down
+    feedback_percentage = int((thumbs_up / total_feedback) * 100) if total_feedback > 0 else 0
+
+    # Top failed queries
+    cursor.execute("SELECT question FROM chat_history WHERE answer LIKE '⚠️%'")
+    failed_list = [row[0] for row in cursor.fetchall()]
+
+    return {
+        "total_queries": total_queries,
+        "failed_queries": failed_queries,
+        "daily_queries": daily_queries,
+        "positive_feedback": thumbs_up,
+        "negative_feedback": thumbs_down,
+        "feedback_percentage": feedback_percentage,
+        "failed_queries_list": failed_list
+    }
+
+# --- Knowledge Base management ---
+@app.get("/kb")
+def get_kb():
+    cursor.execute("SELECT id, question, answer FROM kb")
+    rows = cursor.fetchall()
+    return [{"id": i, "question": q, "answer": a} for i, q, a in rows]
+
+@app.post("/kb")
+def add_kb(entry: dict):
+    cursor.execute("INSERT INTO kb(question, answer) VALUES (?, ?)", (entry["question"], entry["answer"]))
+    conn.commit()
+    return {"message": "KB entry added!"}
+
+@app.put("/kb/{entry_id}")
+def edit_kb(entry_id: int, entry: dict):
+    cursor.execute("UPDATE kb SET question=?, answer=? WHERE id=?", (entry["question"], entry["answer"], entry_id))
+    conn.commit()
+    return {"message": "KB entry updated!"}
+
+@app.delete("/kb/{entry_id}")
+def delete_kb(entry_id: int):
+    cursor.execute("DELETE FROM kb WHERE id=?", (entry_id,))
+    conn.commit()
+    return {"message": "KB entry deleted!"}
+
+    
