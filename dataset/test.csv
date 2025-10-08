@@ -1,0 +1,441 @@
+text,intent
+How to stay fit?,give_tip
+Tips for better sleep,give_tip
+I feel feverish and weak,ask_symptom
+I have food poisoning,ask_symptom
+Foods to eat for better sleep,give_tip
+How do I stay healthy?,exercise_query
+Foods that reduce stress,give_tip
+Do you like music?,chitchat
+Too much work is stressing me,stress_issue
+I feel like crying all the time,stress_issue
+I feel nervous before exams,stress_issue
+My back hurts,ask_symptom
+I think I might have depression,negative_mood
+I feel abdominal pain,ask_symptom
+I feel weak and tired,ask_symptom
+I feel empty inside,negative_mood
+Healthy morning routine?,give_tip
+Talk to you soon,goodbye
+I feel pain in my stomach,ask_symptom
+How to boost immunity,give_tip
+I have eye infection,ask_symptom
+I have ear pain,ask_symptom
+I have diabetes,ask_symptom
+I feel headaches often,ask_symptom
+Bye for now,goodbye
+I feel weakness after eating,ask_symptom
+Do you think I’m fine?,mood_check
+I feel feverish and weak,ask_symptom
+Who made you?,chitchat
+Hello,greeting
+I feel very sad,negative_mood
+What can you do?,chitchat
+My head hurts,ask_symptom
+I feel empty inside,negative_mood
+I have a sore throat,ask_symptom
+I feel like crying all the time,stress_issue
+I have food poisoning,ask_symptom
+See you later,goodbye
+See you later,goodbye
+I appreciate it,thanks
+I feel pain in my stomach,ask_symptom
+Suggest some fitness tips,exercise_query
+Too much work is stressing me,stress_issue
+Bye,goodbye
+I'm under a lot of pressure,stress_issue
+See you later,goodbye
+Tell me a joke,chitchat
+I feel dizzy,ask_symptom
+How to avoid junk food,give_tip
+Hey there,greeting
+I feel anxious at night,stress_issue
+I have a fever,ask_symptom
+Foods that reduce stress,give_tip
+Can you analyze my mood?,mood_check
+I have skin rashes,ask_symptom
+I appreciate it,thanks
+I have a cough,ask_symptom
+Healthy diet for weight loss,give_tip
+I feel very sleepy during the day,sleep_issue
+I have trouble concentrating,stress_issue
+Tips for better sleep,give_tip
+I have cold and cough,ask_symptom
+I can’t focus on work,stress_issue
+I have stomach cramps,ask_symptom
+My back hurts,ask_symptom
+What's the weather today?,chitchat
+I have a cough,ask_symptom
+How are you?,greeting
+Benefits of meditation,give_tip
+What's the weather today?,chitchat
+Daily routine for good health?,give_tip
+I have chest pain,ask_symptom
+My back hurts,ask_symptom
+I have insomnia,sleep_issue
+Too much work is stressing me,stress_issue
+I have malaria,ask_symptom
+I feel very sleepy during the day,sleep_issue
+I feel pain in my stomach,ask_symptom
+Healthy diet for weight loss,give_tip
+I have ear pain,ask_symptom
+I feel fatigue all day,ask_symptom
+See you later,goodbye
+Good morning,greeting
+Do you think I’m fine?,mood_check
+I have diabetes,ask_symptom
+Best exercises for beginners,exercise_query
+I have cold and cough,ask_symptom
+How’s my mood?,mood_check
+I feel nervous before exams,stress_issue
+I think I might have depression,negative_mood
+Hey,greeting
+Who made you?,chitchat
+I feel weak and tired,ask_symptom
+I have malaria,ask_symptom
+What's the weather today?,chitchat
+Am I stressed?,mood_check
+Many thanks,thanks
+I feel chills and fever,ask_symptom
+I have trouble concentrating,stress_issue
+I feel nervous before exams,stress_issue
+I think I have diarrhea,ask_symptom
+Hi,greeting
+I have joint pain,ask_symptom
+How to boost immunity,give_tip
+Give me some healthy habits,give_tip
+Thank you for your advice,thanks
+How much water should I drink?,give_tip
+I’m not getting enough sleep,sleep_issue
+Tell me something positive,chitchat
+Do I seem okay?,mood_check
+I’m not getting enough sleep,sleep_issue
+I have a cough,ask_symptom
+I feel chills and fever,ask_symptom
+My sleep schedule is messed up,sleep_issue
+What's the weather today?,chitchat
+Many thanks,thanks
+Good evening,greeting
+I have skin rashes,ask_symptom
+I have been sad for weeks,negative_mood
+Good evening,greeting
+What's the weather today?,chitchat
+Tips for better sleep,give_tip
+I feel very stressed,stress_issue
+I feel chills and fever,ask_symptom
+Thank you so much,thanks
+I can’t stop overthinking,stress_issue
+I have vomiting,ask_symptom
+Hello,greeting
+I’m not getting enough sleep,sleep_issue
+Tell me a joke,chitchat
+My sleep schedule is messed up,sleep_issue
+Thank you so much,thanks
+I am feeling lonely,negative_mood
+See you later,goodbye
+I feel feverish and weak,ask_symptom
+I have food poisoning,ask_symptom
+Who made you?,chitchat
+I have insomnia,sleep_issue
+I keep waking up at night,sleep_issue
+How to stay fit?,give_tip
+Many thanks,thanks
+Daily routine for good health?,give_tip
+How’s my mood?,mood_check
+Can you analyze my mood?,mood_check
+I feel muscle pain,ask_symptom
+Hey,greeting
+Suggest a diet tip,give_tip
+I have food poisoning,ask_symptom
+I appreciate it,thanks
+Can you motivate me?,chitchat
+Am I stressed?,mood_check
+I am feeling lonely,negative_mood
+Best time for exercise,give_tip
+I have trouble concentrating,stress_issue
+What can you do?,chitchat
+What can you do?,chitchat
+Who made you?,chitchat
+Thanks a lot,thanks
+Hey,greeting
+My head hurts,ask_symptom
+Thanks a lot,thanks
+Best time for exercise,give_tip
+I have chest pain,ask_symptom
+My head hurts,ask_symptom
+Hey,greeting
+I have eye infection,ask_symptom
+Healthy diet for weight loss,give_tip
+I feel empty inside,negative_mood
+Healthy morning routine?,give_tip
+Daily routine for good health?,give_tip
+What exercises should I do?,exercise_query
+I have trouble concentrating,stress_issue
+I have been sad for weeks,negative_mood
+Goodbye,goodbye
+My head hurts,ask_symptom
+Bye,goodbye
+I feel empty inside,negative_mood
+What exercises should I do?,exercise_query
+Healthy diet for weight loss,give_tip
+I feel dizzy,ask_symptom
+I feel nauseous,ask_symptom
+I feel feverish and weak,ask_symptom
+Thanks a lot,thanks
+I feel fatigue all day,ask_symptom
+What can you do?,chitchat
+I appreciate it,thanks
+I can’t sleep well,sleep_issue
+Thank you so much,thanks
+I have high blood pressure,ask_symptom
+I have stomach cramps,ask_symptom
+I feel weakness after eating,ask_symptom
+I have trouble concentrating,stress_issue
+Give me a workout plan,exercise_query
+I'm not feeling good,negative_mood
+Daily routine for good health?,give_tip
+Many thanks,thanks
+Bye for now,goodbye
+Healthy diet for weight loss,give_tip
+I feel nervous before exams,stress_issue
+Bye,goodbye
+Best exercises for beginners,exercise_query
+Foods to eat for better sleep,give_tip
+I feel very sleepy during the day,sleep_issue
+I have cold and cough,ask_symptom
+Hey there,greeting
+I feel empty inside,negative_mood
+How’s my mood?,mood_check
+My sleep schedule is messed up,sleep_issue
+I feel feverish and weak,ask_symptom
+Do you think I’m fine?,mood_check
+Hello,greeting
+I appreciate it,thanks
+Goodbye,goodbye
+Bye,goodbye
+Share some wellness advice,give_tip
+Hi,greeting
+I appreciate it,thanks
+I feel body ache,ask_symptom
+I have stomach cramps,ask_symptom
+Too much work is stressing me,stress_issue
+Thanks a lot,thanks
+Suggest some fitness tips,exercise_query
+How do I stay healthy?,exercise_query
+I feel chills and fever,ask_symptom
+I have cold and cough,ask_symptom
+How to manage anxiety,give_tip
+See you later,goodbye
+I am feeling lonely,negative_mood
+Thanks,thanks
+Foods to eat for better sleep,give_tip
+Tips for better sleep,give_tip
+Give me some healthy habits,give_tip
+Healthy morning routine?,give_tip
+Suggest some fitness tips,exercise_query
+Best exercises for beginners,exercise_query
+I have chest pain,ask_symptom
+I have a fever,ask_symptom
+I'm feeling low today,negative_mood
+Hey,greeting
+How to manage anxiety,give_tip
+I have food poisoning,ask_symptom
+I feel feverish and weak,ask_symptom
+Am I stressed?,mood_check
+Take care,goodbye
+Give me a workout plan,exercise_query
+How much water should I drink?,give_tip
+What can you do?,chitchat
+Do I seem okay?,mood_check
+I feel weak and tired,ask_symptom
+Foods that reduce stress,give_tip
+I have ear pain,ask_symptom
+I have joint pain,ask_symptom
+Can you motivate me?,chitchat
+Hey there,greeting
+Tell me a health tip,give_tip
+I feel very sleepy during the day,sleep_issue
+I feel chills and fever,ask_symptom
+Bye for now,goodbye
+I have cold and cough,ask_symptom
+I feel weakness after eating,ask_symptom
+Suggest a yoga routine,exercise_query
+I can’t sleep well,sleep_issue
+I feel weak and tired,ask_symptom
+Suggest a diet tip,give_tip
+Goodbye,goodbye
+Hello,greeting
+Who made you?,chitchat
+Do I seem okay?,mood_check
+Am I stressed?,mood_check
+I feel dizzy,ask_symptom
+I can’t sleep well,sleep_issue
+Give me a workout plan,exercise_query
+Who made you?,chitchat
+I feel fatigue all day,ask_symptom
+How are you?,greeting
+I feel headaches often,ask_symptom
+Take care,goodbye
+Thank you for your advice,thanks
+I have insomnia,sleep_issue
+Hey,greeting
+I have stomach cramps,ask_symptom
+I have food poisoning,ask_symptom
+What exercises should I do?,exercise_query
+Healthy diet for weight loss,give_tip
+How much water should I drink?,give_tip
+I’m not getting enough sleep,sleep_issue
+Can you motivate me?,chitchat
+I can’t stop overthinking,stress_issue
+My head hurts,ask_symptom
+See you later,goodbye
+Share some wellness advice,give_tip
+I feel very sleepy during the day,sleep_issue
+Suggest a diet tip,give_tip
+See you later,goodbye
+I feel fatigue all day,ask_symptom
+Do you like music?,chitchat
+I feel chills and fever,ask_symptom
+How to stay fit?,give_tip
+I feel feverish and weak,ask_symptom
+My back hurts,ask_symptom
+Healthy diet for weight loss,give_tip
+What's the weather today?,chitchat
+I think I have diarrhea,ask_symptom
+Bye,goodbye
+I feel depressed,negative_mood
+Thank you so much,thanks
+I have ear pain,ask_symptom
+I'm feeling low today,negative_mood
+Foods to eat for better sleep,give_tip
+I have been sad for weeks,negative_mood
+Take care,goodbye
+Best exercises for stress relief?,exercise_query
+Bye for now,goodbye
+I can’t sleep well,sleep_issue
+How to boost immunity,give_tip
+Thank you for your advice,thanks
+Am I stressed?,mood_check
+Tips for better sleep,give_tip
+How to boost immunity,give_tip
+Thank you for your advice,thanks
+Healthy morning routine?,give_tip
+Best exercises for beginners,exercise_query
+Hey there,greeting
+Too much work is stressing me,stress_issue
+Many thanks,thanks
+I have insomnia,sleep_issue
+I can’t focus on work,stress_issue
+What's the weather today?,chitchat
+I have malaria,ask_symptom
+What can you do?,chitchat
+Am I stressed?,mood_check
+I have food poisoning,ask_symptom
+I have stomach cramps,ask_symptom
+Best exercises for stress relief?,exercise_query
+Tips for better sleep,give_tip
+I'm feeling low today,negative_mood
+I keep waking up at night,sleep_issue
+I feel nauseous,ask_symptom
+Healthy diet for weight loss,give_tip
+I feel very sad,negative_mood
+Healthy morning routine?,give_tip
+I feel anxious at night,stress_issue
+Share some wellness advice,give_tip
+I feel weak and tired,ask_symptom
+I have chest pain,ask_symptom
+Tell me something positive,chitchat
+I feel feverish and weak,ask_symptom
+Thanks,thanks
+My sleep schedule is messed up,sleep_issue
+Hi,greeting
+I have joint pain,ask_symptom
+Hey,greeting
+Tell me something positive,chitchat
+Suggest some fitness tips,exercise_query
+Thank you for your advice,thanks
+My sleep schedule is messed up,sleep_issue
+Tips for better sleep,give_tip
+I have trouble concentrating,stress_issue
+Good morning,greeting
+Hey there,greeting
+Tell me something positive,chitchat
+Thanks,thanks
+Breathing exercises for stress,exercise_query
+I have malaria,ask_symptom
+I feel feverish and weak,ask_symptom
+Can you analyze my mood?,mood_check
+I think I have diarrhea,ask_symptom
+I feel like crying all the time,stress_issue
+I have cold and cough,ask_symptom
+I have vomiting,ask_symptom
+I can’t focus on work,stress_issue
+Do you think I’m fine?,mood_check
+I feel body ache,ask_symptom
+I have insomnia,sleep_issue
+Who made you?,chitchat
+I feel muscle pain,ask_symptom
+How to boost immunity,give_tip
+I am feeling lonely,negative_mood
+Take care,goodbye
+Suggest a yoga routine,exercise_query
+I have skin rashes,ask_symptom
+How to manage anxiety,give_tip
+I think I might have depression,negative_mood
+My back hurts,ask_symptom
+How’s my mood?,mood_check
+I am feeling lonely,negative_mood
+I have joint pain,ask_symptom
+I feel nervous before exams,stress_issue
+I have joint pain,ask_symptom
+Do I seem okay?,mood_check
+My head hurts,ask_symptom
+Benefits of meditation,give_tip
+Foods to eat for better sleep,give_tip
+Suggest some fitness tips,exercise_query
+I feel body ache,ask_symptom
+Best exercises for stress relief?,exercise_query
+Foods that reduce stress,give_tip
+Hi,greeting
+Breathing exercises for stress,exercise_query
+What exercises should I do?,exercise_query
+I feel muscle pain,ask_symptom
+I feel very sad,negative_mood
+I’m not getting enough sleep,sleep_issue
+How to boost immunity,give_tip
+I have high blood pressure,ask_symptom
+I have a sore throat,ask_symptom
+I feel pain in my stomach,ask_symptom
+Breathing exercises for stress,exercise_query
+I feel body ache,ask_symptom
+Benefits of meditation,give_tip
+Who made you?,chitchat
+I have cold and cough,ask_symptom
+See you later,goodbye
+Who made you?,chitchat
+I have been sad for weeks,negative_mood
+Suggest a diet tip,give_tip
+Do I seem okay?,mood_check
+I have ear pain,ask_symptom
+I have diabetes,ask_symptom
+How to boost immunity,give_tip
+Can you analyze my mood?,mood_check
+Hey,greeting
+I have vomiting,ask_symptom
+Do you think I’m fine?,mood_check
+How’s my mood?,mood_check
+See you later,goodbye
+Hi,greeting
+See you soon,goodbye
+I feel abdominal pain,ask_symptom
+I feel fatigue all day,ask_symptom
+I feel very sad,negative_mood
+Many thanks,thanks
+Healthy morning routine?,give_tip
+Do you think I’m fine?,mood_check
+I feel anxious at night,stress_issue
+Good morning,greeting
+Hello,greeting
+My back hurts,ask_symptom
+I feel muscle pain,ask_symptom
+Can you motivate me?,chitchat
