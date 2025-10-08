@@ -1,64 +1,78 @@
-🌍 WellBot – A Wellness Chatbot
+🌿 WellBot – Conversational Wellness Chatbot
 
-WellBot is an AI-powered Wellness Chatbot built as part of the Infosys Springboard Virtual Internship.
-It evolves across two milestones:
+WellBot is an intelligent conversational wellness assistant designed to promote physical and mental wellbeing through engaging, AI-powered interactions.
+It provides users with instant guidance on various wellness topics while maintaining an intuitive, user-friendly interface.
 
-Milestone 1: Authentication + Profile Management
+🧠 Project Vision
 
-Milestone 2: Conversational AI Core (Intent Recognition, Dialogue Management, Knowledge Base, Chat History)
+To make wellness guidance accessible, interactive, and intelligent for everyone.
 
-🚀 Milestone 1 – User Authentication & Profile Management
-📌 Features
+Integrate AI and NLP for seamless user interaction.
 
-✅ User Registration & Login using FastAPI backend
+Deliver personalized wellness insights.
 
-✅ Password Encryption with bcrypt
+Evolve from a basic chatbot into a context-aware conversational assistant.
 
-✅ Profile Management (Name, Age Group, Language) stored in SQLite
+🚀 Key Features
 
-✅ Streamlit Frontend for easy interaction
+🗨️ Interactive Chat Interface – Clean and responsive chat UI for user interaction.
 
-✅ Feedback messages for user actions (success/error)
+🔐 User Authentication System – Login, Register, and Profile management.
 
-🛠️ Tech Stack
+🤖 Conversational AI Core – Intent recognition, dialogue management, and knowledge base integration.
 
-Frontend: Streamlit
+📚 Wellness Knowledge Base – Covers both mental and physical health topics.
 
-Backend: FastAPI
+⚙️ Admin Dashboard – Manage users, view chat logs, and monitor system activity.
 
-Database: SQLite
+💬 Context-Aware Responses – Enhanced NLP for more natural conversations.
 
-Security: bcrypt for password hashing
+🧩 Milestones Achieved
+🏁 Milestone 1 – User Login & Basic Chat Interface
 
-📂 Files
+Implemented a navigation bar with Home, Register, Login, Dashboard, and Profile options.
 
-app.py → Streamlit frontend (Home, Login, Register)
+Designed a functional chat interface where users can interact with WellBot.
 
-backend.py → FastAPI backend (Register, Login, Profile management)
+⚙️ Milestone 2 – Conversational AI Core
 
-users.db → SQLite database
+Added Dialogue Manager, Intent Recognition, and Knowledge Base modules.
 
-🤖 Milestone 2 – Conversational AI Core
-📌 Features
+Enabled the chatbot to process user intent and deliver relevant responses.
 
-✅ Intent Recognition → Detects user queries (greetings, stress, diet, exercise, meditation, etc.)
+🧠 Milestone 3 – Health Knowledge Base Expansion & Advanced NLP
 
-✅ Dialogue Management → Maintains context and generates appropriate responses
+Integrated a comprehensive wellness dataset.
 
-✅ Knowledge Base Integration → Provides global wellness information
+Enhanced NLP model for context tracking and better response generation.
 
-✅ Chat History Storage → Saves conversations (username, query, response, timestamp) in SQLite
+🧾 Milestone 4 – Admin Dashboard & System Refinement
 
-✅ Personalized Guidance based on past conversations
+Built an Admin Dashboard for data management and performance tracking.
 
-🛠️ Tech Stack
+Refined the chatbot’s accuracy, speed, and UI for a smoother experience.
 
-Frontend: Streamlit
+🧰 Tech Stack & Tools
+Category	Tools / Libraries
+Frontend	Streamlit
+Backend	FastAPI
+Database	SQLite3
 
-Backend: FastAPI
+🎯 Project Outcomes
 
-Database: SQLite (extended with chat_history table)
+Built a fully functional, AI-powered wellness chatbot.
 
-AI/NLP: Simple intent classification (keyword/rule-based or ML model)
+Learned to integrate front-end (Streamlit) with back-end (FastAPI & SQLite3).
 
-Knowledge Source: JSON/Dictionary wellness dataset
+Improved understanding of dialogue systems, NLP basics, and UI/UX design.
+
+🏆 Future Enhancements
+
+Integrate LLM-based NLP models (like GPT or BERT).
+
+Add voice interaction support.
+
+Enable real-time chat history visualization and sentiment analysis.
+Programming	Python
+Libraries	Pandas, Pydantic, Bcrypt, Requests, JSON, OS, Datetime, Random, Typing
+AI/NLP	Basic intent recognition using keyword mapping & knowledge base lookup
