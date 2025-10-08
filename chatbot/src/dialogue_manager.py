@@ -1,195 +1,201 @@
 import random
-from transformers import pipeline
+import re
+from typing import List, Dict, Tuple
+from .knowledge_base import load_kb, format_health_info
 
-# Load BART model once (for fallback responses)
-bart = pipeline("text2text-generation", model="facebook/bart-large-cnn")
+# -------------------- Load Knowledge Base -------------------- #
+KB = load_kb()
 
-# Store conversation context per user
-user_contexts = {}
+# -------------------- Symptom to Illness Mapping -------------------- #
+SYMPTOM_TO_ILLNESSES = {}
+for illness, info in KB.items():
+    for sym in info.get("symptoms", []):
+        SYMPTOM_TO_ILLNESSES.setdefault(sym.lower(), set()).add(illness)
 
-# Predefined responses for each intent
-responses = {
-    "greet": [
-        "👋 Hello! I'm WellBot. How are you feeling today?",
-        "Hi there! 😊 I’m doing well, thanks for asking. How about you?",
-        "Hey! I’m here to chat and support you. How are things going?"
-    ],
-    "positive_mood": [
-        "😊 That’s wonderful to hear! Keep spreading the good vibes!",
-        "Awesome! What made you feel this way today?",
-        "Glad you’re feeling good 💙. Stay positive!"
-    ],
-    "ask_symptom": [
-        "🩺 Thanks for sharing. Mild headaches can sometimes be caused by stress or dehydration. Try drinking some water and resting.",
-        "That sounds uncomfortable. If it continues, it’s a good idea to consult a doctor.",
-        "It seems like you’re sharing a symptom. Would you like me to suggest some quick self-care tips?"
-    ],
-    "mood_check": [
-        "💙 I hear you. Feeling low can be tough. Do you want me to share some coping strategies?",
-        "I’m sorry you’re feeling this way. Remember, it’s okay to not be okay. You’re not alone.",
-        "Sometimes expressing your feelings can help. Want me to suggest some relaxation or mindfulness activities?"
-    ],
-    "give_tip": [
-        "💡 Fitness tip: Start with short daily walks or stretching. Consistency matters more than intensity.",
-        "Remember to stay hydrated and get enough sleep — they’re as important as exercise.",
-        "Healthy eating + regular movement = better energy. Do you want me to suggest a simple workout plan?"
-    ],
-    "thanks": [
-        "You’re welcome! 💙",
-        "Glad I could help! 😊",
-        "Anytime! Take care of yourself."
-    ],
-    "goodbye": [
-        "Goodbye! 👋 Take care of yourself.",
-        "See you later! Stay positive 🌟",
-        "Bye for now! Remember, I’m here whenever you need me."
-    ],
+# -------------------- Session Data -------------------- #
+user_sessions: Dict[str, Dict] = {}
 
-    # --- Rule-based wellness intents ---
-    "stress": [
-        "😌 Stress is normal. Try deep breathing or a short walk — it helps!",
-        "Stress can be tough. How about taking a 5-minute break?",
-        "Relaxation tip: inhale deeply for 4s, hold 4s, exhale 4s."
-    ],
-    "sleep": [
-        "🌙 Sleep is essential. Try to go to bed at the same time each night.",
-        "Avoid screens 1 hour before sleep for better rest.",
-        "A calm night routine helps. Want me to suggest one?"
-    ],
-    "diet": [
-        "🥗 A balanced diet fuels your body. Include veggies, protein, and water!",
-        "Skipping meals can make you tired. Try small, healthy snacks.",
-        "Eat mindfully — enjoy your food without distractions."
-    ],
-    "motivation": [
-        "🚀 You’ve got this! Take small steps and celebrate progress.",
-        "Motivation comes and goes — discipline keeps you going 💪.",
-        "Set one small goal for today and smash it!"
-    ],
-    "loneliness": [
-        "💙 Feeling lonely is tough. Talking to a friend or journaling might help.",
-        "You’re not alone. Would you like me to suggest calming activities?",
-        "Sometimes connecting with nature or music can ease loneliness."
-    ],
-    "crisis": [
-        "💙 I hear your pain. You are not alone. If you feel like giving up, please reach out to a trusted friend or professional immediately.",
-        "If you are in danger of hurting yourself, please call your local emergency number. In India, you can call the AASRA helpline at +91-9820466726.",
-        "You matter. Talking to someone can help — please don’t go through this alone."
-    ],
+# -------------------- Conversation Phrases -------------------- #
+GREETINGS = [
+    "Hello! How are you feeling today?",
+    "Hi there — tell me what symptoms you are experiencing.",
+    "Hey! I'm here to help. What symptoms do you have?"
+]
 
-    # --- New ones ---
-    "exercise": [
-        "💪 Exercise is great for both mind and body! Even 10 mins of stretching counts.",
-        "Try to keep it fun — dance, yoga, or a quick walk!",
-        "Fitness tip: set small, realistic goals so you stay consistent."
-    ],
-    "hydration": [
-        "💧 Water keeps you energized! Aim for 6–8 glasses a day.",
-        "Feeling low on energy? Try drinking a glass of water.",
-        "Hydration tip: carry a water bottle to remind yourself."
-    ],
-    "mindfulness": [
-        "🧘 Try this: Close your eyes, take a deep breath, and focus on your inhale and exhale for 1 minute.",
-        "Mindfulness helps calm the mind. Want me to guide you through a short breathing exercise?",
-        "Even 2 minutes of silence can refresh your mood."
-    ],
-    "productivity": [
-        "📌 Try the Pomodoro technique: 25 mins focus, 5 mins break.",
-        "Write down your top 3 tasks for today and focus on them.",
-        "Small steps beat procrastination. What’s one thing you can do now?"
-    ],
-    "relationships": [
-        "💙 Relationships can be tricky. It helps to talk openly about your feelings.",
-        "Conflicts happen — listening calmly often makes things better.",
-        "You deserve respect and kindness in relationships. Want me to share tips for handling conflicts?"
-    ],
-    "bot_feeling": [
-        "I’m doing great, thanks for asking! 😊 How are you?",
-        "I’m just a bot, but I feel happy chatting with you 💙",
-        "Thanks for asking! I’m here and ready to listen to you 👂"
-    ],
-    "affirm": [
-        "Great 👍 Let’s continue!",
-        "Okay 💙, noted!",
-        "Perfect! Do you want me to suggest something helpful?"
-    ],
-    "chitchat": [
-        "Haha, that’s interesting! Tell me more 😊",
-        "Oh nice! What else do you enjoy?",
-        "😄 I like chatting with you. Want to talk about wellness or just random things?"
-    ]
-}
+GOODBYES = [
+    "Goodbye! Take care and stay healthy.",
+    "See you soon — stay safe!",
+    "Bye! Wishing you good health."
+]
 
+MORE_SYMPTOMS = [
+    "Can you tell me more symptoms?",
+    "Any other symptoms you're feeling?",
+    "What else are you experiencing?"
+]
 
-# --- Rule-based detector ---
-def detect_rule_based_intent(user_msg: str):
-    user_msg = user_msg.lower()
+DISCLAIMER = (
+    "⚠️ *Disclaimer:* I'm not a medical professional. "
+    "I can only suggest possible conditions based on your symptoms, "
+    "but please consult a healthcare provider for accurate diagnosis."
+)
 
-    if user_msg in ["yes", "yeah", "yep", "sure", "of course"]:
-        return "affirm"
-    if any(word in user_msg for word in ["stress", "stressed", "anxious", "pressure"]):
+# -------------------- Regex for Entity Extraction -------------------- #
+duration_pattern = re.compile(r"\bfor\s+(\d+)\s+days?\b")
+severity_pattern = re.compile(r"\b(mild|moderate|severe)\b")
+
+# -------------------- Helper Functions -------------------- #
+def extract_entities(text: str) -> Dict[str, str]:
+    entities = {}
+    d = duration_pattern.search(text)
+    s = severity_pattern.search(text)
+    if d:
+        entities["duration"] = f"{d.group(1)} days"
+    if s:
+        entities["severity"] = s.group(1)
+    return entities
+
+def extract_symptoms(text: str) -> List[str]:
+    found = []
+    lower_text = text.lower()
+    for symptom in SYMPTOM_TO_ILLNESSES.keys():
+        if symptom in lower_text and symptom not in found:
+            found.append(symptom)
+    return found
+
+def add_symptoms(user_id: str, symptoms: List[str], entities: Dict[str, str]):
+    session = user_sessions.setdefault(user_id, {"symptoms": set(), "entities": {}})
+    for s in symptoms:
+        session["symptoms"].add(s)
+    for k, v in entities.items():
+        if k not in session["entities"]:
+            session["entities"][k] = v
+
+def detect_possible_illnesses(symptoms: List[str]) -> List[Tuple[str, int]]:
+    matches = []
+    sym_set = set(symptoms)
+    for illness, info in KB.items():
+        ill_syms = set(s.lower() for s in info.get("symptoms", []))
+        common = sym_set & ill_syms
+        if common:
+            matches.append((illness, len(common)))
+    matches.sort(key=lambda x: x[1], reverse=True)
+    return matches
+
+def suggest_more_symptoms(current: List[str]) -> List[str]:
+    all_syms = set(SYMPTOM_TO_ILLNESSES.keys())
+    remaining = list(all_syms - set(current))
+    random.shuffle(remaining)
+    return remaining[:3]
+
+# -------------------- Intent Detection -------------------- #
+def detect_rule_based_intent(msg: str) -> str:
+    m = msg.lower()
+    if any(w in m for w in ["hi", "hello", "hey", "namaste", "नमस्ते"]):
+        return "greet"
+    if any(w in m for w in ["bye", "goodbye", "see you", "tata", "फिर मिलेंगे"]):
+        return "goodbye"
+    if any(w in m for w in ["stress", "anxious", "sad", "depressed", "tension", "तनाव", "उदास"]):
         return "stress"
-    if any(word in user_msg for word in ["sleep", "sleepy", "tired", "insomnia"]):
+    if any(w in m for w in ["sleep", "tired", "insomnia", "नींद", "थकान"]):
         return "sleep"
-    if any(word in user_msg for word in ["diet", "food", "eat", "meal", "nutrition"]):
-        return "diet"
-    if any(word in user_msg for word in ["motivation", "motivated", "inspired", "drive", "lazy"]):
-        return "motivation"
-    if any(word in user_msg for word in ["lonely", "alone", "isolated", "unloved"]):
-        return "loneliness"
-    if any(word in user_msg for word in ["suicide", "give up", "kill myself", "end my life", "die", "worthless", "hopeless"]):
-        return "crisis"
-    if any(word in user_msg for word in ["exercise", "workout", "gym", "fit"]):
+    if any(w in m for w in ["exercise", "workout", "gym", "योग", "फिटनेस"]):
         return "exercise"
-    if any(word in user_msg for word in ["water", "drink", "hydrated", "thirsty"]):
-        return "hydration"
-    if any(word in user_msg for word in ["meditate", "mindful", "calm", "relax"]):
-        return "mindfulness"
-    if any(word in user_msg for word in ["focus", "study", "concentrate", "work"]):
-        return "productivity"
-    if any(word in user_msg for word in ["friend", "family", "love", "relationship"]):
-        return "relationships"
-    if any(word in user_msg for word in ["joke", "fun", "music", "movie"]):
-        return "chitchat"
-    if any(phrase in user_msg for phrase in ["how are you", "how r u", "how do you feel"]):
-        return "bot_feeling"
-
+    if any(p in m for p in ["what do i have", "diagnose", "so what do i have", "कौन सी बीमारी"]):
+        return "diagnosis_query"
     return None
 
+# -------------------- Language Detection -------------------- #
+def detect_language(msg: str) -> str:
+    if re.search(r"[ऀ-ॿ]", msg):
+        return "hi"
+    return "en"
 
-# --- Dialogue Manager ---
-def get_bot_reply(user_id: str, user_message: str, intent: str) -> str:
-    """
-    Dialogue management function:
-    - Uses predicted intent from trained model
-    - Rule-based overrides for wellness & safety
-    - Predefined responses or BART fallback
-    - Maintains user context
-    """
-    user_message = user_message.lower()
-    context = user_contexts.get(user_id, {"last_intent": None})
+# -------------------- Diagnosis Response -------------------- #
+def build_diagnosis_and_reset(user_id: str, matches: List[Tuple[str, int]], language: str) -> str:
+    top_matches = [m[0] for m in matches[:3]]
+    user_sessions.pop(user_id, None)
 
-    # Apply rule-based overrides
-    rule_intent = detect_rule_based_intent(user_message)
-    if rule_intent:
-        intent = rule_intent
+    if language == "hi":
+        illnesses = ", ".join(top_matches)
+        response = f"⚠️ कृपया डॉक्टर से परामर्श लें। संभावित बीमारियां: {illnesses}\n\n"
+        for ill in top_matches:
+            info = KB.get(ill, {})
+            response += format_health_info(info, illness=ill, language="hi") + "\n\n"
+        return response.strip()
 
-    if intent in responses:
-        # Special handling: if user says "yes" after symptom, continue from ask_symptom
-        if intent == "affirm" and context.get("last_intent") == "ask_symptom":
-            response = "Okay 👍 Here are some quick self-care tips: drink water, rest your eyes, and take a short walk."
-        else:
-            response = random.choice(responses[intent])
-    else:
-        # --- Fallback with BART ---
-        prompt = (
-            f"The user said: '{user_message}'. "
-            "Reply briefly in a supportive and friendly way."
-        )
-        bart_output = bart(prompt, max_new_tokens=60, do_sample=True, top_p=0.9, temperature=0.7)
-        response = bart_output[0]["generated_text"]
+    response_parts = [DISCLAIMER, ""]
+    for ill in top_matches:
+        info = KB.get(ill, {})
+        response_parts.append(format_health_info(info, illness=ill, language="en"))
+        response_parts.append("")
+    response_parts.append(f"**Possible conditions:** {', '.join(top_matches)}")
+    return "\n".join(response_parts)
 
-    # Save context
-    context["last_intent"] = intent
-    user_contexts[user_id] = context
-    return response
+# -------------------- Core Chatbot Logic -------------------- #
+def get_bot_reply(user_id: str, user_message: str) -> str:
+    msg = user_message.strip()
+    language = detect_language(msg)
+
+    # Greeting / Goodbye always handled first
+    intent = detect_rule_based_intent(msg)
+    if intent == "greet":
+        if user_id not in user_sessions:
+            user_sessions[user_id] = {"symptoms": set(), "entities": {}}
+        return random.choice(GREETINGS) if language == "en" else "नमस्ते! आप आज कैसा महसूस कर रहे हैं?"
+    if intent == "goodbye":
+        user_sessions.pop(user_id, None)
+        return random.choice(GOODBYES) if language == "en" else "अलविदा! स्वस्थ रहें!"
+
+    # -------------------- Symptom Handling -------------------- #
+    new_syms = extract_symptoms(msg)
+    ents = extract_entities(msg)
+    if new_syms or ents:
+        add_symptoms(user_id, new_syms, ents)
+
+    sess = user_sessions.get(user_id, {"symptoms": set()})
+    all_syms = list(sess["symptoms"])
+
+    # If enough symptoms, give diagnosis
+    if len(all_syms) >= 2:
+        matches = detect_possible_illnesses(all_syms)
+        if matches and matches[0][1] >= 2:
+            return build_diagnosis_and_reset(user_id, matches, language)
+
+    # If only 1 symptom, ask for more
+    if len(all_syms) < 2:
+        return random.choice(MORE_SYMPTOMS) if language == "en" else "क्या आप मुझे और लक्षण बता सकते हैं?"
+
+    # Suggest additional symptoms if needed
+    remaining = suggest_more_symptoms(all_syms)
+    if remaining:
+        return f"Do you also have {remaining[0]}?" if language == "en" else f"क्या आपको {remaining[0]} भी है?"
+
+    # -------------------- Lifestyle / Emotional / Sleep Queries -------------------- #
+    if intent in ["stress", "sleep", "exercise"]:
+        info = KB.get(intent, {})
+        return format_health_info(info, topic=intent, language=language)
+
+    # -------------------- Diagnosis Request -------------------- #
+    if intent == "diagnosis_query":
+        if not all_syms:
+            return (
+                "I don’t have enough symptoms yet. Please tell me what you’re feeling."
+                if language == "en"
+                else "मुझे अभी आपके लक्षणों की पूरी जानकारी नहीं है। कृपया अपने लक्षण बताएं।"
+            )
+        matches = detect_possible_illnesses(all_syms)
+        if not matches:
+            return (
+                "I need a few more symptoms to make a suggestion."
+                if language == "en"
+                else "मुझे सुझाव देने के लिए कुछ और लक्षणों की आवश्यकता है।"
+            )
+        return build_diagnosis_and_reset(user_id, matches, language)
+
+    # Default fallback
+    return (
+        "I need a bit more information. " + random.choice(MORE_SYMPTOMS)
+        if language == "en"
+        else "मुझे और जानकारी चाहिए। कृपया कुछ और लक्षण बताएं।"
+    )
