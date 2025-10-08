@@ -1,0 +1,332 @@
+{
+  "flu": {
+    "description": {
+      "en": "A contagious respiratory illness caused by influenza viruses.",
+      "hi": "इन्फ्लुएंजा वायरस के कारण होने वाली संक्रामक श्वसन बीमारी।"
+    },
+    "symptoms": ["fever", "बुखार", "cold", "जुकाम", "cough", "खांसी", "headache", "सिरदर्द", "body pain", "शरीर दर्द", "chills", "ठंड लगना", "fatigue", "थकान"],
+    "treatment": {
+      "en": ["Get plenty of rest and drink fluids.", "Use over-the-counter medicines for fever and body pain as advised.", "Consult a doctor if severe or persistent."],
+      "hi": ["पर्याप्त आराम करें और तरल पदार्थ पिएं।", "बुखार और दर्द के लिए पैकेजिंग के निर्देश के अनुसार दवा लें।", "यदि लक्षण गंभीर हों तो डॉक्टर से संपर्क करें।"]
+    },
+    "warning": {
+      "en": "Seek immediate care for breathing difficulty or very high fever.",
+      "hi": "साँस लेने में कठिनाई या बहुत उच्च बुखार होने पर तुरंत उपचार लें।"
+    }
+  },
+  "common_cold": {
+    "description": {
+      "en": "A mild viral infection of the upper respiratory tract.",
+      "hi": "ऊपरी श्वसन पथ का हल्का वायरल संक्रमण।"
+    },
+    "symptoms": ["runny nose", "नाक बहना", "sneezing", "छींक", "cough", "खांसी", "sore throat", "गले में दर्द", "congestion", "नाक बंद"],
+    "treatment": {
+      "en": ["Stay hydrated and rest.", "Steam inhalation and saline nasal spray can relieve congestion.", "Use lozenges or warm fluids for sore throat."],
+      "hi": ["हाइड्रेटेड रहें और आराम करें।", "स्टीम और सलाइन नेज़ल स्प्रे नाक की भीड़ कम कर सकते हैं।", "गले की खराश के लिए गरम पेय लें।"]
+    },
+    "warning": {
+      "en": "If symptoms worsen or persist beyond 10 days, consult a provider.",
+      "hi": "यदि लक्षण 10 दिनों से अधिक रहें या बिगड़ें तो डॉक्टर से मिलें।"
+    }
+  },
+  "allergy": {
+    "description": {
+      "en": "Immune response to allergens (pollen, dust, food).",
+      "hi": "एलर्जन (पराग, धूल, भोजन) के प्रति प्रतिरक्षा प्रतिक्रिया।"
+    },
+    "symptoms": ["sneezing", "छींक", "runny nose", "नाक बहना", "itchy eyes", "आंखों में खुजली", "hives", "छाले", "rash", "चकत्ते", "cough", "खांसी"],
+    "treatment": {
+      "en": ["Avoid triggers, use antihistamines as advised.", "Keep windows closed on high-pollen days.", "Consider nasal steroid sprays for persistent symptoms."],
+      "hi": ["ट्रिगर्स से बचें, आवश्यकता अनुसार एंटीहिस्टामिन लें।", "पराग अधिक होने पर खिड़कियाँ बंद रखें।", "लगातार लक्षण रहे तो नेज़ल स्टेरॉइड विचार करें।"]
+    },
+    "warning": {
+      "en": "Seek immediate care for swelling of face/throat or breathing difficulty.",
+      "hi": "चेहरे/गले में सूजन या सांस लेने में कठिनाई होने पर तुरंत सहायता लें।"
+    }
+  },
+  "migraine": {
+    "description": {
+      "en": "A neurological condition causing severe headache and sensitivity to light or sound.",
+      "hi": "गंभीर सिरदर्द और रोशनी/ध्वनि के प्रति संवेदनशीलता।"
+    },
+    "symptoms": ["headache", "सिरदर्द", "nausea", "मितली", "sensitivity to light", "रोशनी से संवेदनशीलता", "sensitivity to sound", "ध्वनि से संवेदनशीलता"],
+    "treatment": {
+      "en": ["Rest in a dark, quiet room.", "Use recommended pain relief if appropriate.", "Avoid known triggers (sleep disruption, stress, certain foods)."],
+      "hi": ["अंधेरे व शांत कमरे में आराम करें।", "यदि उपयुक्त हो तो दर्द निवारक लें।", "ट्रिगर्स जैसे नींद में कमी, तनाव, कुछ खाद्य पदार्थ से बचें।"]
+    },
+    "warning": {
+      "en": "If headaches are sudden, very severe, or accompanied by neurological changes seek urgent care.",
+      "hi": "यदि सिरदर्द अचानक या बहुत गंभीर हो या अन्य तंत्रिका संबंधी लक्षण हों तो तुरंत जांच कराएँ।"
+    }
+  },
+  "covid": {
+    "description": {
+      "en": "Respiratory infection caused by SARS-CoV-2.",
+      "hi": "SARS-CoV-2 द्वारा होने वाला श्वसन संक्रमण।"
+    },
+    "symptoms": ["fever", "बुखार", "cough", "खांसी", "fatigue", "थकान", "loss of taste", "स्वाद की कमी", "loss of smell", "गंध की कमी", "shortness of breath", "साँस लेने में कठिनाई"],
+    "treatment": {
+      "en": ["Isolate and follow local public health guidance.", "Monitor oxygen; seek care if breathless or O₂ low.", "Rest and fluids."],
+      "hi": ["आइसोलेट रहें और स्थानीय स्वास्थ्य दिशानिर्देशों का पालन करें।", "ऑक्सीजन स्तर देखें; साँस फूलना या कम ऑक्सीजन पर डॉक्टर से मिलें।", "आराम व तरल पदार्थ लें।"]
+    },
+    "warning": {
+      "en": "Seek urgent care for chest pain, difficulty breathing, or sudden confusion.",
+      "hi": "छाती में दर्द, साँस लेने में कठिनाई या अचानक भ्रम होने पर तुरंत सहायता लें।"
+    }
+  },
+  "dengue": {
+    "description": {
+      "en": "A mosquito-borne viral illness causing high fever and body pains.",
+      "hi": "मच्छर के कारण फैलने वाली वायरल बीमारी जो तेज बुखार व बदन दर्द करती है।"
+    },
+    "symptoms": ["high fever", "उच्च बुखार", "severe body pain", "शरीर में तेज दर्द", "joint pain", "जोड़ों में दर्द", "rash", "चकत्ते", "headache", "सिरदर्द", "bleeding", "खून आना"],
+    "treatment": {
+      "en": ["Seek medical diagnosis (dengue test).", "Maintain hydration; follow provider guidance.", "Avoid NSAIDs like ibuprofen if bleeding risk."],
+      "hi": ["डेंगू परीक्षण के लिए डॉक्टर से मिलें।", "हाइड्रेशन बनाए रखें; डॉक्टर की सलाह मानें।", "यदि रक्तस्राव का खतरा हो तो आईबूप्रोफेन जैसी दवाएँ न लें।"]
+    },
+    "warning": {
+      "en": "Warning signs (severe abdominal pain, bleeding, persistent vomiting) need urgent care.",
+      "hi": "गंभीर पेट दर्द, लगातार उल्टी या रक्तस्राव जैसी चेतावनी पर तुरंत उपचार आवश्यक है।"
+    }
+  },
+  "malaria": {
+    "description": {
+      "en": "Mosquito-transmitted parasitic infection causing fever and chills.",
+      "hi": "मच्छर से फैलने वाला पैरासाइटिक संक्रमण जो बुखार और ठंड देती है।"
+    },
+    "symptoms": ["fever", "बुखार", "chills", "ठंड लगना", "sweating", "पसीना", "headache", "सिरदर्द", "nausea", "मितली"],
+    "treatment": {
+      "en": ["Get tested (blood smear/RDT).", "Follow antimalarial treatment as prescribed.", "Hydration and rest."],
+      "hi": ["रक्त परीक्षण (स्मियर/RDT) कराएँ।", "डॉक्टर द्वारा सुझाए गए एंटीमलेरियल लें।", "हाइड्रेशन व आराम करें।"]
+    },
+    "warning": {
+      "en": "Seek urgent care for very high fever, confusion, or reduced urine output.",
+      "hi": "बहुत तेज बुखार, भ्रम या यूरिन कम होने पर तुरंत उपचार लें।"
+    }
+  },
+  "typhoid": {
+    "description": {
+      "en": "Bacterial infection (Salmonella typhi) causing prolonged fever and GI symptoms.",
+      "hi": "Salmonella typhi बैक्टीरिया से होने वाला संक्रमण जो लम्बा बुखार व पेट के लक्षण देता है।"
+    },
+    "symptoms": ["prolonged fever", "लंबा बुखार", "abdominal pain", "पेट दर्द", "constipation", "कब्ज", "diarrhea", "दस्त", "headache", "सिरदर्द"],
+    "treatment": {
+      "en": ["Seek medical testing and antibiotic treatment as prescribed.", "Hydration and rest."],
+      "hi": ["परीक्षण कराएँ और डॉक्टर द्वारा बताए गए एंटीबायोटिक लें।", "हाइड्रेशन व आराम करें।"]
+    },
+    "warning": {
+      "en": "If fever persists or severe abdominal symptoms occur, see a doctor.",
+      "hi": "यदि बुखार लगातार रहे या पेट की गंभीर समस्या हो तो डॉक्टर से मिलें।"
+    }
+  },
+  "diabetes": {
+    "description": {
+      "en": "A metabolic disorder affecting blood sugar regulation.",
+      "hi": "रक्त शर्करा नियंत्रित करने वाली मेटाबोलिक बीमारी।"
+    },
+    "symptoms": ["frequent urination", "बार-बार पेशाब", "increased thirst", "अत्यधिक प्यास", "fatigue", "थकान", "blurred vision", "धुंधली दृष्टि", "slow healing", "घाव धीमे भरना"],
+    "treatment": {
+      "en": ["Monitor blood sugar, follow diet and medication plan, and exercise regularly.", "Consult endocrinologist for management."],
+      "hi": ["रक्त शर्करा मॉनिटर करें, आहार व दवा योजना का पालन करें, नियमित व्यायाम करें।", "उपचार के लिए एंडोक्रिनोलॉजिस्ट से मिलें।"]
+    },
+    "warning": {
+      "en": "Seek care for very high/low blood sugar, persistent infections, or vision changes.",
+      "hi": "बहुत अधिक/कम शर्करा, लगातार संक्रमण या दृश्यमान परिवर्तन पर मदद लें।"
+    }
+  },
+  "hypertension": {
+    "description": {
+      "en": "Condition of persistently high blood pressure.",
+      "hi": "लगातार उच्च रक्तचाप की स्थिति।"
+    },
+    "symptoms": ["headache", "सिरदर्द", "dizziness", "चक्कर", "nosebleed", "नाक बहना", "chest pain", "छाती में दर्द", "vision problems", "धुंधली दृष्टि"],
+    "treatment": {
+      "en": ["Reduce salt intake, exercise, follow prescribed medication, and manage stress.", "Regular blood pressure monitoring."],
+      "hi": ["नमक कम करें, व्यायाम करें, दवा लें और तनाव प्रबंधित करें।", "नियमित ब्लड प्रेशर जांच करें।"]
+    },
+    "warning": {
+      "en": "Seek urgent care for severe headache, chest pain, or focal weakness.",
+      "hi": "तीव्र सिरदर्द, छाती में दर्द या कमजोरी पर तुरंत देखभाल लें।"
+    }
+  },
+  "heart_disease": {
+    "description": {
+      "en": "Conditions affecting the heart and blood vessels (e.g., ischemic heart disease).",
+      "hi": "हृदय और रक्त वाहिकाओं को प्रभावित करने वाली स्थितियाँ।"
+    },
+    "symptoms": ["chest pain", "छाती में दर्द", "shortness of breath", "साँस फूलना", "palpitations", "धड़कन तेज होना", "fatigue", "थकान"],
+    "treatment": {
+      "en": ["Seek cardiology evaluation; follow medications and lifestyle recommendations.", "Immediate care for suspected heart attack."],
+      "hi": ["कार्डियोलॉजी जाँच कराएँ; दवा व जीवनशैली सलाह का पालन करें।", "हृदयघात के संदेह पर तुरंत सहायता लें।"]
+    },
+    "warning": {
+      "en": "Severe chest pain, fainting, or shortness of breath requires emergency care.",
+      "hi": "गंभीर छाती का दर्द, बेहोशी या साँस की कमी पर आपातकालीन देखभाल आवश्यक है।"
+    }
+  },
+  "anxiety": {
+    "description": {
+      "en": "Excessive worry, fear, or physiological arousal affecting daily life.",
+      "hi": "अत्यधिक चिंता, भय या शारीरिक उत्तेजना जो दैनिक जीवन प्रभावित करे।"
+    },
+    "symptoms": ["restlessness", "बेचैनी", "racing heart", "दिल की धड़कन तेज होना", "sweating", "पसीना", "trembling", "कांपना", "difficulty concentrating", "ध्यान न लगना"],
+    "treatment": {
+      "en": ["Practice breathing exercises and mindfulness, consider therapy, consult mental health professionals if severe."],
+      "hi": ["साँस की तकनीक व माइंडफुलनेस करें, थैरेपी पर विचार करें, गंभीर होने पर मानसिक स्वास्थ्य विशेषज्ञ से मिलें।"]
+    },
+    "warning": {
+      "en": "Seek help if anxiety causes inability to function or suicidal thoughts.",
+      "hi": "यदि चिंता कार्य करने में असमर्थ बनाये या आत्मघाती विचार हों तो मदद लें।"
+    }
+  },
+  "depression": {
+    "description": {
+      "en": "Persistent low mood, loss of interest, and other cognitive/physical symptoms.",
+      "hi": "लगातार उदासी, रुचि की कमी और अन्य मानसिक/शारीरिक लक्षण।"
+    },
+    "symptoms": ["sadness", "उदासी", "loss of interest", "रुचि की कमी", "fatigue", "थकान", "sleep issues", "नींद की समस्या", "appetite changes", "भूख में परिवर्तन"],
+    "treatment": {
+      "en": ["Talk therapy (CBT), social support, and consult mental health professional for medication if needed."],
+      "hi": ["थैरेपी (CBT), सामाजिक समर्थन, जरूरत पर मानसिक स्वास्थ्य विशेषज्ञ से दवा पर चर्चा करें।"]
+    },
+    "warning": {
+      "en": "Seek immediate help for suicidal thoughts or severe functional decline.",
+      "hi": "आत्महत्या संबंधी विचार या गंभीर कार्यक्षमता गिरावट पर तुरंत मदद लें।"
+    }
+  },
+  "food_poisoning": {
+    "description": {
+      "en": "Illness caused by ingestion of contaminated food or drink.",
+      "hi": "प्रदूषित भोजन/पेय के सेवन से होने वाली बीमारी।"
+    },
+    "symptoms": ["nausea", "मितली", "vomiting", "उल्टी", "diarrhea", "दस्त", "stomach pain", "पीठ या पेट में दर्द", "fever", "बुखार"],
+    "treatment": {
+      "en": ["Hydration (oral rehydration solutions), rest, seek medical attention if severe or bloody diarrhea.", "Avoid solid food until vomiting subsides."],
+      "hi": ["हाइड्रेशन (ORS), आराम, यदि गंभीर या खून वाले दस्त हों तो डॉक्टर से मिलें।", "उल्टी के बाद ठोस भोजन से बचें।"]
+    },
+    "warning": {
+      "en": "Dehydration, high fever, or bloody stools need urgent medical attention.",
+      "hi": "निर्जलीकरण, तेज बुखार या खून वाले दस्त पर तुरंत उपचार लें।"
+    }
+  },
+  "gastroenteritis": {
+    "description": {
+      "en": "Stomach/intestinal infection causing vomiting and diarrhea.",
+      "hi": "पेट/आंत का संक्रमण जो उल्टी और दस्त पैदा करता है।"
+    },
+    "symptoms": ["diarrhea", "दस्त", "vomiting", "उल्टी", "stomach cramps", "पेट में ऐंठन", "fever", "बुखार"],
+    "treatment": {
+      "en": ["Fluid replacement, BRAT diet when able, medical care if severe.", "Avoid anti-diarrheals if bloody stools or high fever without medical advice."],
+      "hi": ["तरल पदार्थ लें, ब्राट (केला, चावल, सेब, टोस्ट) आहार, गंभीर होने पर डॉक्टर को दिखाएँ।"]
+    },
+    "warning": {
+      "en": "Seek care for severe dehydration, blood in stool, or prolonged symptoms.",
+      "hi": "गंभीर निर्जलीकरण, मल में रक्त या लक्षणों के लंबे समय तक बने रहने पर सहायता लें।"
+    }
+  },
+  "asthma": {
+    "description": {
+      "en": "Chronic airway disease with wheeze, cough and breathlessness.",
+      "hi": "श्वसन मार्गों की पुरानी बीमारी जिससे वीज़, खांसी और साँस फूलना होता है।"
+    },
+    "symptoms": ["wheezing", "सीटी जैसी ध्वनि", "shortness of breath", "साँस फूलना", "cough", "खांसी", "chest tightness", "छाती में दबाव"],
+    "treatment": {
+      "en": ["Use inhalers/bronchodilators as prescribed, avoid triggers, seek urgent care for severe attacks."],
+      "hi": ["नियुक्त इनहेलर/ब्रोंकोडायलेटर्स लें, ट्रिगर्स से बचें, गंभीर अटैक पर तुरन्त चिकित्सीय सहायता लें।"]
+    },
+    "warning": {
+      "en": "Severe breathlessness, cyanosis or inability to speak in full sentences requires emergency care.",
+      "hi": "गंभीर सांस फूलना, नीलापन या बोलने में परेशानी पर आपातकालीन मदद लें।"
+    }
+  },
+  "pneumonia": {
+    "description": {
+      "en": "Infection of the lungs causing cough, fever and difficulty breathing.",
+      "hi": "फेफड़ों का संक्रमण जिससे खांसी, बुखार और साँस में कठिनाई होती है।"
+    },
+    "symptoms": ["cough", "खांसी", "fever", "बुखार", "shortness of breath", "साँस फूलना", "chest pain", "छाती में दर्द", "productive cough", "कफ आना"],
+    "treatment": {
+      "en": ["Medical evaluation, antibiotics if bacterial, rest and fluids.", "Hospital care if severe."],
+      "hi": ["डॉक्टरी जाँच, बैक्टीरियल होने पर एंटीबायोटिक, आराम व तरल।", "गंभीर होने पर अस्पताल में देखभाल।"]
+    },
+    "warning": {
+      "en": "High fever, rapid breathing, blue lips, or confusion require urgent care.",
+      "hi": "तेज बुखार, तेज साँस, नील होंठ या भ्रम पर तुरंत उपचार आवश्यक है।"
+    }
+  },
+  "arthritis": {
+    "description": {
+      "en": "Inflammation of joints causing pain and stiffness (osteoarthritis/rheumatoid arthritis).",
+      "hi": "जोड़ों की सूजन जिससे दर्द और अकड़न होती है (ऑस्टियोआर्थराइटिस/रूमेटॉयड)।"
+    },
+    "symptoms": ["joint pain", "जोड़ों में दर्द", "stiffness", "कठोरपन", "swelling", "सूजन", "reduced range of motion", "गतिविधि में कमी"],
+    "treatment": {
+      "en": ["Exercise, weight management, analgesics/anti-inflammatories as advised, physiotherapy.", "See rheumatologist for inflammatory causes."],
+      "hi": ["व्यायाम, वजन नियंत्रित रखें, दवा व फिजियोथेरेपी जैसी सलाह लें।", "यदि सूजन अधिक हो तो रूमेटोलॉजिस्ट से परामर्श लें।"]
+    },
+    "warning": {
+      "en": "If joint redness, high fever or rapid worsening occurs, seek medical attention.",
+      "hi": "जोड़ों का लाल होना, तेज बुखार या अचानक बिगड़ना होने पर डॉक्टर देखें।"
+    }
+  },
+  "skin_infection": {
+    "description": {
+      "en": "Bacterial, viral or fungal infections of the skin (e.g., cellulitis, impetigo).",
+      "hi": "त्वचा के बैक्टीरियल/वायरल/फंगल संक्रमण (जैसे सेल्युलाइटिस, इम्पेटिगो)।"
+    },
+    "symptoms": ["redness", "लालपन", "swelling", "सूजन", "pain", "दर्द", "pus", "पपड़ी/पेस्टी", "itching", "खुजली", "rash", "चकत्ते"],
+    "treatment": {
+      "en": ["Keep area clean, topical/oral antibiotics or antifungals as prescribed, seek care for spreading redness."],
+      "hi": ["क्षेत्र साफ रखें, डॉक्टर की सलाह के अनुसार मलहम/दवा लें, फैलने पर डॉक्टर से मिलें।"]
+    },
+    "warning": {
+      "en": "Spreading redness, fever, or pus drainage require prompt medical attention.",
+      "hi": "फैलता लालपन, बुखार या पस निकलना होने पर तुरंत डॉक्टर दिखाएँ।"
+    }
+  },
+  "dehydration": {
+    "description": {
+      "en": "Loss of body fluids causing dizziness, weakness and low urine output.",
+      "hi": "शरीर से तरल पदार्थ की कमी जिससे चक्कर, कमजोरी और कम पेशाब होता है।"
+    },
+    "symptoms": ["thirst", "प्यास", "dry mouth", "सूखा मुंह", "dizziness", "चक्कर", "dark urine", "गहरा मूत्र", "fatigue", "थकान"],
+    "treatment": {
+      "en": ["Oral rehydration solutions or fluids; seek IV fluids if severe.", "Treat underlying cause (vomiting/diarrhea)."],
+      "hi": ["ओआरएस/तरल पिएं; गंभीर होने पर IV फ्लुइड्स की जरूरत पड़ सकती है।", "उल्टी/दस्त के कारण का इलाज करें।"]
+    },
+    "warning": {
+      "en": "Very low urine output, fainting, or confusion need urgent care.",
+      "hi": "बहुत कम पेशाब, बेहोशी या भ्रम होने पर तुरंत सहायता लें।"
+    }
+  },
+  "insomnia": {
+    "description": {
+      "en": "Difficulty falling or staying asleep affecting daytime function.",
+      "hi": "सोने में या सोते रहने में कठिनाई जो दिन के कार्य प्रभावित करती है।"
+    },
+    "symptoms": ["difficulty sleeping", "नींद न आना", "waking at night", "रात में बार-बार जागना", "daytime fatigue", "दिन में थकान", "irritability", "चिड़चिड़ापन"],
+    "treatment": {
+      "en": ["Maintain sleep hygiene, avoid screens before bed, consider CBT-I or medical review for chronic cases."],
+      "hi": ["नींद की अच्छी दिनचर्या बनाए रखें, बिस्तर पर स्क्रीन न रखें, लंबे समय तक रहे तो CBT-I या डॉक्टर से मिलें।"]
+    },
+    "warning": {
+      "en": "If insomnia severely impacts daily life or causes suicidal thoughts seek professional help.",
+      "hi": "यदि नींद की कमी जीवन पर गंभीर प्रभाव डाल रही है या आत्मघाती विचार हों तो विशेषज्ञ से मिलें।"
+    }
+  },
+  "urinary_tract_infection": {
+    "description": {
+      "en": "Infection of the urinary tract causing pain, urgency and sometimes fever.",
+      "hi": "मूत्र पथ का संक्रमण जिससे जलन, बार-बार पेशाब और कभी-कभी बुखार होता है।"
+    },
+    "symptoms": ["burning urination", "पेशाब में जलन", "frequent urination", "बार-बार पेशाब", "lower abdominal pain", "नीचे पेट में दर्द", "fever", "बुखार"],
+    "treatment": {
+      "en": ["Seek medical evaluation and antibiotics if bacterial; drink fluids and avoid bladder irritants."],
+      "hi": ["डॉक्टरी जांच कराएँ और आवश्यक होने पर एंटीबायोटिक लें; तरल पदार्थ पियें और ब्लैडर को चिढ़ाने वाले पदार्थ न लें।"]
+    },
+    "warning": {
+      "en": "High fever, flank pain, or reduced urine output suggests complicated infection—seek urgent care.",
+      "hi": "उच्च बुखार, पसली के पीछे दर्द या पेशाब कम होना जटिल संक्रमण का संकेत हो सकता है—तुरंत मदद लें।"
+    }
+  }
+}
