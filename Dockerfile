@@ -1,27 +1,20 @@
+# Base image
 FROM python:3.10-slim
 
-# Install dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential gcc g++ && \
-    rm -rf /var/lib/apt/lists/*
-
-# Set working directory
+# Set workdir
 WORKDIR /app
 
-# Copy requirements first
-COPY requirements.txt /app/
+# Copy all project files
+COPY . .
 
-# Install Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the project
-COPY . /app
+# Make start.sh executable
+RUN chmod +x start.sh
 
-# Make start script executable
-RUN chmod +x /app/start.sh
-
-# Expose ports
-EXPOSE 8000 8501
+# Expose Render's port
+EXPOSE 8000
 
 # Run both backend and frontend
-ENTRYPOINT ["/app/start.sh"]
+CMD ["./start.sh"]
