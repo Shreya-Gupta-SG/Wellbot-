@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.venv/
+venv/
+.git
+.DS_Store
+__MACOSX/
+results/
+dataset/
