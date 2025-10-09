@@ -4,7 +4,8 @@ import random
 import time
 import pandas as pd
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "http://localhost:8000"
+
 
 # --- Session State Initialization ---
 if "logged_in" not in st.session_state:
@@ -302,3 +303,4 @@ elif choice == "Dashboard":
 
     else:
         st.warning("⚠️ Please login first.")
+
