@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic
+bcrypt
+torch
+transformers
+pandas
+scikit-learn
+streamlit
+numpy
+nltk
+joblib
+bcrypt
+requests
