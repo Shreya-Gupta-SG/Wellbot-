@@ -35,7 +35,7 @@ MORE_SYMPTOMS = [
 ]
 
 DISCLAIMER = (
-    "⚠️ *Disclaimer:* I'm not a medical professional. "
+    " *Disclaimer:* I'm not a medical professional. "
     "I can only suggest possible conditions based on your symptoms, "
     "but please consult a healthcare provider for accurate diagnosis."
 )
@@ -199,3 +199,4 @@ def get_bot_reply(user_id: str, user_message: str) -> str:
         if language == "en"
         else "मुझे और जानकारी चाहिए। कृपया कुछ और लक्षण बताएं।"
     )
+
